@@ -23,10 +23,3 @@ def person():
 @_dev.route('/teapot/', methods=['GET'])
 def teapot():
     return "Would you like some tea?", 418
-
-# logging
-# @_dev.route('/destroy/', methods=['POST'])
-# def destroy():
-#     print(request.form['text'])
-#     _dev.logger.info('Failure to comply.')
-#     abort(401)
