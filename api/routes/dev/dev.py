@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request
+from api.routes.classify.model.model import classify
 from newspaper import Article
 
 _dev = Blueprint('dev', __name__)
@@ -36,4 +37,5 @@ def extract():
     article = Article(url)
     article.download()
     article.parse()
-    return article.text
+    return classify(article.text)
+
