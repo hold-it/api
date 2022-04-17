@@ -1,13 +1,13 @@
 
 import pandas as pd
-import re, string, nltk, pickle
+import os, re, string, nltk, pickle
 from bs4 import BeautifulSoup
 from nltk.corpus import stopwords
 from keras.preprocessing import text,sequence
 max_features = 10000
 maxlen = 300
 
-def classify(texts):
+def classifyInput(texts):
     d = {'text': [texts]}
     nltk.download('stopwords')
     stop = set(stopwords.words('english'))
@@ -44,6 +44,6 @@ def classify(texts):
     tokenized_test = tokenizer.texts_to_sequences(testing_data['text'])
     test_model = sequence.pad_sequences(tokenized_test, maxlen=maxlen)
     # load the model and predict
-    loaded_model = pickle.load(open('Best_Model','rb'))
+    loaded_model = pickle.load(open(os.path.join(os.getcwd(), 'api/routes/classify/model/Best_Model.pkl'),'rb'))
     result = loaded_model.predict(test_model)
     return result
