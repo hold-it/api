@@ -51,6 +51,6 @@ def classifyInput(texts):
     tokenized_test = tokenizer.texts_to_sequences(testing_data['text'])
     test_model = sequence.pad_sequences(tokenized_test, maxlen=maxlen)
     # load the model and predict'
-    loaded_model = pickle.load(open("C:/Users/dack8/repos/newthing/api/api/routes/classify/model/test.txt",'rb'))
+    loaded_model = pickle.load(open(os.path.join(os.getcwd(), "api/routes/classify/model/Best_Model.pkl"),'rb'))
     result = loaded_model.predict(test_model)
-    return result
+    return str(result)
