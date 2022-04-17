@@ -1,6 +1,6 @@
-from model.model import classifyInput
+from api.routes.classify.model.model import classifyInput
 from newspaper import Article
-from flask import Blueprint
+from flask import Blueprint, request
 _classify = Blueprint('classify', __name__)
 
 @_classify.route('/url', methods=['POST'])
