@@ -4,7 +4,6 @@ import re, string, nltk, pickle
 from bs4 import BeautifulSoup
 from nltk.corpus import stopwords
 from keras.preprocessing import text,sequence
-from string import punctuation
 max_features = 10000
 maxlen = 300
 
