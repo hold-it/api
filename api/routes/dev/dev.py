@@ -1,4 +1,5 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
+from newspaper import Article
 
 _dev = Blueprint('dev', __name__)
 
@@ -23,3 +24,16 @@ def person():
 @_dev.route('/teapot/', methods=['GET'])
 def teapot():
     return "Would you like some tea?", 418
+
+@_dev.route('/url', methods=['POST'])
+def extract():
+    request_url = request.get_json()
+
+    url = None
+    if request_url:
+        if 'url' in request_url:
+            url = request_url['url']
+    article = Article(url)
+    article.download()
+    article.parse()
+    return article.text
